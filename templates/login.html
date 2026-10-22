@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Blood Bank Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(rgba(40, 0, 0, .35), rgba(40, 0, 0, .45)),
+                url("{{ url_for('static', filename='blood-bg.png') }}")
+                center / cover fixed no-repeat;
+        }
+
+        .brand {
+            text-align: center;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .brand .icon {
+            font-size: 42px;
+        }
+
+        .brand h1 {
+            margin: 8px 0;
+            color: white;
+            font-size: clamp(23px, 4vw, 34px);
+        }
+
+        .brand p {
+            color: white;
+            margin: 8px 0;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 32px;
+            background: rgba(255, 255, 255, .96);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, .3);
+        }
+
+        .login-card h2 {
+            color: #1e293b;
+            text-align: center;
+            font-size: 28px;
+            margin: 0 0 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            text-align: center;
+            margin: 0 0 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px #fee2e2;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #991b1b;
+        }
+
+        .flash-message {
+            padding: 12px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            color: #991b1b;
+            background: #fee2e2;
+            overflow-wrap: anywhere;
+        }
+
+        .register-link {
+            margin-top: 22px;
+            text-align: center;
+            color: #475569;
+        }
+
+        .register-link a {
+            color: #dc2626;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            font-size: 13px;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="brand">
+        <div class="icon">🩸</div>
+        <h1>Blood Bank Management System</h1>
+        <p>Save Lives | Donate Blood | Build a Healthier Tomorrow</p>
+    </header>
+
+    <main class="login-card">
+        <h2>Welcome Back!</h2>
+        <p class="subtitle">Login to your account</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required>
+            </div>
+
+            <button class="login-button" type="submit">
+                Login to Account →
+            </button>
+        </form>
+
+        <div class="register-link">
+            Don't have an account?
+            <a href="{{ url_for('register') }}">Create Account</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        © 2026 Blood Bank Management System · Saving Lives Together ❤️
+    </footer>
+
+</body>
+</html>
