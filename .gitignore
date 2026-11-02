@@ -4,3 +4,9 @@ venv/
 .venv/
 .env
 database/blood_bank.sql
+
+database/ca.pem
+
+database/schema.sql
+import_schema.py
+initialize_stock.py
