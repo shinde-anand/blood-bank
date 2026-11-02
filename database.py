@@ -1,10 +1,15 @@
+import os
 import mysql.connector
+
 
 def get_db_connection():
     connection = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="blood_bank_management"
+        host=os.environ.get("DB_HOST", "localhost"),
+        port=int(os.environ.get("DB_PORT", "3306")),
+        user=os.environ.get("DB_USER", "root"),
+        password=os.environ.get("DB_PASSWORD", ""),
+        database=os.environ.get("DB_NAME", "blood_bank_management"),
+        connection_timeout=10
     )
+
     return connection
